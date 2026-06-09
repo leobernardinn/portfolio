@@ -8,7 +8,7 @@ https://leobernadinn.github.io
 
 ## Stack
 
-HTML / CSS vanilla — aucune dépendance front-end, deux polices Google Fonts (Lora + Poppins) et Font Awesome pour les icônes.
+HTML / CSS vanilla - aucune dépendance front-end, deux polices Google Fonts (Lora + Poppins) et Font Awesome pour les icônes.
 
 ## Structure
 

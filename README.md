@@ -13,9 +13,9 @@ HTML / CSS vanilla - aucune dépendance front-end, deux polices Google Fonts (Lo
 ## Structure
 
 ```
-portfolio_Léo_Bernardin.html         # portfolio complet
-image_athle_1.jpeg                   # photo athlétisme
-image_athle_2.jpeg                   # photo athlétisme
+index.html            # portfolio complet
+image_athle_1.jpeg    # photo athlétisme
+image_athle_2.jpeg    # photo athlétisme
 README.md
 ```
 

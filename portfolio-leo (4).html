@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Léo Bernardin - Data Science & Data Engineering</title>
+<meta name="description" content="Portfolio de Léo Bernardin, Data Scientist et Data Engineer">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<style>
+/* ===== RESET & BASE ===== */
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:10px}
+/* NO scroll-behavior:smooth here — handled by jQuery only */
+body{background:#151515;font-family:'Lora',serif;font-size:1.7rem;line-height:3rem;color:#6e6e6e}
+a,a:visited{color:#313131;transition:color .3s}
+a:hover{color:#FF0077}
+img{max-width:100%;display:block}
+ul{list-style:none;padding:0;margin:0}
+
+/* ===== GRID ===== */
+.row{width:94%;max-width:1140px;margin:0 auto}
+.col-twelve{width:100%}
+.col-four{width:33.33%;float:left;padding:0 20px}
+.col-six{width:50%;float:left}
+.cf:before,.cf:after{content:'';display:table}
+.cf:after{clear:both}
+
+/* ===== TYPOGRAPHY ===== */
+h1,h2,h3,h4,h5,h6{font-family:'Poppins',sans-serif;color:#313131;margin-bottom:2rem}
+h1{font-size:3.1rem;line-height:1.35;letter-spacing:-.1rem}
+h3{font-size:1.9rem;color:#FF0077;line-height:1.5;margin-bottom:1.5rem}
+h5{font-size:1.4rem;line-height:1.7;text-transform:uppercase;letter-spacing:.15rem;font-weight:700;margin-bottom:1rem}
+p.lead{font-family:'Lora',serif;font-size:2rem;line-height:1.9;color:#888}
+
+/* ===== PRELOADER ===== */
+#preloader{position:fixed;inset:0;background:#151515;z-index:900;display:flex;align-items:center;justify-content:center}
+#loader{width:56px;height:56px;border:5px solid rgba(255,255,255,.1);border-top-color:#FF0077;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== HEADER ===== */
+header{position:fixed;top:0;left:0;width:100%;z-index:700;min-height:66px}
+.header-inner{position:relative;min-height:66px}
+.top-right-block{position:absolute;left:0;top:0;width:66px;height:66px;background:#000}
+.top-bar{position:absolute;left:90px;top:0;min-width:135px;min-height:66px;background:#000}
+.menu-toggle{display:block;float:left;width:40px;height:40px;margin:13px 0 0 20px;position:relative;cursor:pointer;text-decoration:none}
+.menu-toggle .bar{display:block;position:absolute;right:8px;top:50%;width:24px;height:3px;margin-top:-1.5px;background:#FF0077;transition:background .2s}
+.menu-toggle .bar:before,.menu-toggle .bar:after{content:'';position:absolute;left:0;width:100%;height:100%;background:inherit;transition-duration:.2s,.2s;transition-delay:.2s,0s}
+.menu-toggle .bar:before{top:-8px;transition-property:top,transform}
+.menu-toggle .bar:after{bottom:-8px;transition-property:bottom,transform}
+.menu-toggle.open .bar{background:transparent}
+.menu-toggle.open .bar:before,.menu-toggle.open .bar:after{background:#FF0077;transition-delay:0s,.2s}
+.menu-toggle.open .bar:before{top:0;transform:rotate(45deg)}
+.menu-toggle.open .bar:after{bottom:0;transform:rotate(-45deg)}
+#nav-wrap{position:absolute;top:100%;left:0;width:100%;display:none;font-family:'Poppins',sans-serif;font-size:1.5rem}
+.main-nav{background:#000;padding:24px 30px 40px;width:100%}
+.main-nav li{display:block}
+.main-nav li a{display:block;color:#fff;padding:14px 0;line-height:1;text-decoration:none;transition:color .2s,padding .2s}
+.main-nav li a:hover,.main-nav li.active a{color:#FF0077}
+.main-nav li.active a{padding-left:0}
+
+/* ===== SECTION SHARED ===== */
+section{padding:9.6rem 0}
+.section-intro{text-align:center;margin-bottom:4.8rem}
+.section-intro h5{color:#FF0077}
+.section-intro h1{font-size:3.1rem}
+
+/* ===== INTRO / HERO ===== */
+#s-intro{
+  background:#0f3460;
+  background-image:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
+  background-attachment:fixed;background-size:cover;
+  min-height:100vh;display:table;width:100%;position:relative;text-align:center
+}
+.intro-overlay{position:absolute;inset:0;background:rgba(0,0,0,.42)}
+.intro-content{display:table-cell;vertical-align:middle;padding:0 20px;position:relative;z-index:2}
+.intro-content h1{font-family:'Poppins',sans-serif;color:#fff;font-size:8.8rem;line-height:1;letter-spacing:-.2rem;margin:0 0 1.5rem}
+@media(max-width:768px){.intro-content h1{font-size:5rem}}
+.intro-position{font-family:'Poppins',sans-serif;font-size:1.5rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4rem;margin:0 0 3.5rem}
+.btn-stroke{display:inline-block;padding:1.3rem 3.6rem;border:3px solid #FF0077;color:#FF0077;font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:.2rem;text-decoration:none;border-radius:3px;transition:all .3s;position:relative;z-index:2}
+.btn-stroke:hover{background:#FF0077;color:#fff}
+.intro-social{position:absolute;bottom:5rem;width:100%;text-align:center;z-index:2}
+.intro-social li{display:inline-block;margin:0 1.5rem}
+.intro-social li a{color:rgba(255,255,255,.45);font-size:2.2rem;text-decoration:none;transition:color .3s}
+.intro-social li a:hover{color:#fff}
+
+/* ===== ABOUT ===== */
+#s-about{background:#fff}
+.profile-list{margin-top:3rem}
+.profile-list li{display:flex;align-items:baseline;padding:.7rem 0;border-bottom:1px dotted #ddd;gap:.8rem;flex-wrap:nowrap;white-space:nowrap}
+.profile-list li strong{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:600;color:#313131;flex-shrink:0}
+.profile-list li span{font-size:1.5rem;color:#6e6e6e;white-space:normal}
+
+/* ===== SKILLS ===== */
+#s-skills{background:#f7f7f7}
+.skill-card{background:#fff;border:1px solid #e8e8e8;border-radius:3px;margin-bottom:1.2rem}
+.skill-card-head{padding:1.6rem 2.4rem;border-bottom:1px solid #f2f2f2}
+.skill-card-head h5{margin:0;color:#313131;font-size:1.4rem}
+.skill-card-body{padding:1.5rem 2.4rem 2rem}
+.tags{display:flex;flex-wrap:wrap;gap:.8rem}
+.tag{font-family:'Poppins',sans-serif;font-size:1.2rem;padding:.35rem 1.1rem;border-radius:2px;border:1px solid #e0e0e0;background:#f5f5f5;color:#555}
+.tag.hot{background:#FF0077;color:#fff;border-color:#FF0077}
+
+/* ===== PARCOURS ===== */
+#s-resume{background:#fff}
+.resume-block{margin-bottom:5.4rem}
+.resume-block:last-child{margin-bottom:0}
+.resume-header{margin-bottom:2.8rem}
+.resume-header h2{font-family:'Poppins',sans-serif;font-size:1.9rem;color:#313131;text-transform:uppercase;letter-spacing:.1rem;border-bottom:3px solid #FF0077;padding-bottom:.9rem;margin:0}
+.tl{position:relative;padding-left:3.2rem}
+.tl:before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#e0e0e0}
+.tl-block{position:relative;padding-bottom:4rem}
+.tl-block:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-4.4rem;top:.4rem;width:3.6rem;height:3.6rem;border-radius:50%;background:#FF0077;display:flex;align-items:center;justify-content:center}
+.tl-dot i{color:#fff;font-size:1.5rem}
+.tl-role{font-family:'Poppins',sans-serif;font-size:1.5rem;color:#FF0077;font-weight:600;margin-bottom:.2rem}
+.tl-date{font-family:'Poppins',sans-serif;font-size:1.2rem;color:#aaa;text-transform:uppercase;letter-spacing:.1rem;margin-bottom:1.2rem}
+.tl-org{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:600;color:#313131;margin-bottom:1rem}
+.tl-body{font-size:1.5rem;color:#666;line-height:1.85}
+.tl-body li{margin-bottom:.5rem;list-style:disc;margin-left:1.8rem}
+.tl-body p{margin-bottom:.5rem}
+
+/* ===== STATS ===== */
+#s-stats{background:#313131;padding:7rem 0}
+.stats-row{display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:5rem}
+.stat-item{text-align:center;min-width:140px}
+.stat-icon{color:#FF0077;font-size:3.8rem;line-height:1;margin-bottom:1.2rem}
+.stat-num{display:block;font-family:'Poppins',sans-serif;font-size:5rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.6rem}
+.stat-lbl{display:block;font-family:'Poppins',sans-serif;font-size:1.1rem;text-transform:uppercase;letter-spacing:.2rem;color:rgba(255,255,255,.4);line-height:1.4}
+
+/* ===== PROJETS ===== */
+#s-portfolio{background:#f7f7f7}
+.folio-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+@media(max-width:768px){.folio-grid{grid-template-columns:1fr}}
+.folio-item{position:relative;overflow:hidden;cursor:pointer}
+.folio-label{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 2rem;background:linear-gradient(transparent,rgba(0,0,0,.7));z-index:1}
+.folio-label-title{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:600;color:#fff;margin:0 0 .2rem}
+.folio-label-sub{font-family:'Poppins',sans-serif;font-size:1.1rem;color:rgba(255,255,255,.6);margin:0}
+.folio-bg{height:270px;display:flex;align-items:center;justify-content:center;transition:transform .4s}
+.folio-icon{font-size:5.5rem;color:rgba(255,255,255,.25);transition:color .3s}
+.folio-item:hover .folio-icon{color:rgba(255,255,255,.15)}
+.folio-item:hover .folio-bg{transform:scale(1.05)}
+.folio-overlay{position:absolute;inset:0;background:rgba(255,0,119,.87);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;text-decoration:none}
+.folio-item:hover .folio-overlay{opacity:1}
+.folio-overlay h3{color:#fff;font-size:1.5rem;margin-bottom:.6rem}
+.folio-overlay p{color:rgba(255,255,255,.85);font-size:1.2rem;font-style:italic;margin:0}
+
+/* POPUP */
+.popup-modal{display:none;background:#fff;padding:3.5rem 4rem;max-width:700px;margin:0 auto;border-radius:4px}
+.popup-modal h5{color:#FF0077;font-size:1.6rem;margin-bottom:2rem}
+.popup-modal ul{padding-left:2rem;margin:0}
+.popup-modal li{font-size:1.5rem;line-height:1.85;margin-bottom:.5rem;color:#666;list-style:square}
+.popup-modal li strong{color:#313131;font-family:'Poppins',sans-serif}
+.popup-modal .link-box{margin-top:2.5rem;padding-top:2rem;border-top:1px solid #eee}
+.btn-close{display:inline-block;padding:.8rem 2.4rem;background:#FF0077;color:#fff;font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:.15rem;text-decoration:none;border-radius:3px;transition:background .2s}
+.btn-close:hover{background:#d4005e;color:#fff}
+.mfp-bg{background:rgba(0,0,0,.88)}
+
+/* ===== PUBLICATION ===== */
+#s-publication{background:#1a1a2e}
+#s-publication .section-intro h5{color:#FF0077}
+#s-publication .section-intro h1{color:#fff}
+.pub-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,0,119,.35);border-radius:6px;padding:3.5rem 4rem;max-width:820px;margin:0 auto}
+.pub-venue{font-family:'Poppins',sans-serif;font-size:1.2rem;text-transform:uppercase;letter-spacing:.2rem;color:#FF0077;margin-bottom:1.2rem}
+.pub-title{font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:600;color:#fff;line-height:1.5;margin-bottom:1.2rem}
+.pub-authors{font-size:1.5rem;color:rgba(255,255,255,.55);margin-bottom:1.8rem}
+.pub-authors strong{color:#fff}
+.pub-doi,.pub-doi:visited{font-size:1.3rem;color:#FF0077 !important;text-decoration:none;word-break:break-all;transition:color .2s}
+.pub-doi:hover{color:#ff99cc !important}
+
+/* ===== PASSION ===== */
+#s-passion{background:#fff}
+.passion-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:2rem}
+@media(max-width:900px){.passion-grid{grid-template-columns:1fr}}
+.passion-text p{font-size:1.6rem;color:#6e6e6e;line-height:1.9;margin-bottom:1.8rem}
+.passion-text .hl{color:#FF0077;font-weight:700;font-family:'Poppins',sans-serif}
+.passion-kpis{display:flex;flex-wrap:wrap;gap:2.5rem;margin:2.5rem 0 3rem}
+.passion-kpi{text-align:center}
+.passion-kpi-num{display:block;font-family:'Poppins',sans-serif;font-size:3.5rem;font-weight:700;color:#FF0077;line-height:1}
+.passion-kpi-lbl{display:block;font-family:'Poppins',sans-serif;font-size:1.1rem;color:#999;text-transform:uppercase;letter-spacing:.1rem;margin-top:.4rem;max-width:130px}
+.btn-yt{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 2.4rem;background:#FF0077;color:#fff;font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:600;text-decoration:none;border-radius:3px;transition:background .2s}
+.btn-yt:hover{background:#d4005e;color:#fff}
+.passion-photos{display:flex;flex-direction:column;gap:1.8rem}
+.passion-photos img{width:100%;border-radius:6px;border:3px solid #eee}
+.passion-photos img.landscape{height:300px;object-fit:cover;object-position:center}
+.passion-photos img.portrait{height:480px;object-fit:cover;object-position:top center}
+
+/* ===== CONTACT ===== */
+#s-contact{background:#1f1f1f}
+#s-contact .section-intro h5{color:#FF0077}
+#s-contact .section-intro h1{color:#fff}
+#s-contact .lead{color:rgba(255,255,255,.5)}
+.contact-block{text-align:center;padding:0 20px}
+.contact-icon{color:#FF0077;font-size:4rem;line-height:1;margin-bottom:1.5rem}
+.contact-block h5{color:#fff}
+.contact-block p,.contact-block a{font-size:1.5rem;color:rgba(255,255,255,.5);text-decoration:none}
+.contact-block a{color:#FF0077}
+.contact-block a:hover{color:#ff66aa}
+
+/* ===== FOOTER ===== */
+footer{background:#111;padding:2.4rem 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:1.3rem;color:rgba(255,255,255,.3)}
+.footer-social{display:flex;gap:1.5rem}
+.footer-social a{color:rgba(255,255,255,.3);font-size:2rem;text-decoration:none;transition:color .3s}
+.footer-social a:hover{color:#FF0077}
+
+/* ===== BACK TO TOP ===== */
+#back-top{position:fixed;bottom:3rem;right:3rem;z-index:500}
+#back-top a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;background:#FF0077;color:#fff;border-radius:50%;font-size:1.8rem;text-decoration:none;transition:background .2s;opacity:0;transition:opacity .3s,background .2s}
+#back-top a.visible{opacity:1}
+#back-top a:hover{background:#d4005e}
+
+@media(max-width:768px){
+  .col-four{width:100%;margin-bottom:3rem}
+  .col-six{width:100%}
+  section{padding:6rem 0}
+  .stats-row{gap:3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader"><div id="loader"></div></div>
+
+<!-- HEADER -->
+<header>
+  <div class="row header-inner">
+    <div class="top-right-block"></div>
+    <div class="top-bar">
+      <a class="menu-toggle" href="#" id="menu-btn"><span class="bar"></span></a>
+      <nav id="nav-wrap">
+        <ul class="main-nav">
+          <li class="active"><a href="#s-intro">Accueil</a></li>
+          <li><a href="#s-about">À propos</a></li>
+          <li><a href="#s-skills">Compétences</a></li>
+          <li><a href="#s-resume">Parcours</a></li>
+          <li><a href="#s-portfolio">Projets</a></li>
+          <li><a href="#s-publication">Publication</a></li>
+          <li><a href="#s-passion">Passion</a></li>
+          <li><a href="#s-contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section id="s-intro">
+  <div class="intro-overlay"></div>
+  <div class="intro-content">
+    <div class="row">
+      <div class="col-twelve">
+        <h1>Léo Bernardin</h1>
+        <p class="intro-position">Data Science &nbsp;|&nbsp; Data Engineering</p>
+        <a class="btn-stroke" href="#s-about" id="btn-about">En savoir plus sur moi</a>
+      </div>
+    </div>
+  </div>
+  <ul class="intro-social">
+    <li><a href="https://www.linkedin.com/in/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+  </ul>
+</section>
+
+<!-- ABOUT -->
+<section id="s-about">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>À propos de moi</h5>
+      <h1>Laissez-moi me présenter.</h1>
+      <p class="lead">Je m'appelle Léo Bernardin, actuellement en stage de fin d'études chez Michelin via Akkodis. Passionné par la donnée et l'IA, j'aime apporter mes compétences à des projets concrets, de l'exploration des données au déploiement de modèles. Mobile dans toute la France.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve">
+      <h3 style="margin-bottom:1.5rem">Profil</h3>
+      <ul class="profile-list">
+        <li><strong>Nom :</strong><span>Léo Bernardin</span></li>
+        <li><strong>Métier :</strong><span>Data Scientist | Data Engineer</span></li>
+        <li><strong>Email :</strong><span>leo.bernardin5@gmail.com</span></li>
+        <li><strong>Téléphone :</strong><span>+33 6 41 02 28 67</span></li>
+        <li><strong>Formation :</strong><span>Ingénieur IMDS - Polytech Clermont</span></li>
+        <li><strong>Anglais :</strong><span>B2 - 845/990 TOEIC</span></li>
+        <li><strong>Espagnol :</strong><span>B1 - DELE</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section id="s-skills">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Compétences</h5>
+      <h1>Mon stack technique.</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve">
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h5>Programmation</h5></div>
+        <div class="skill-card-body"><div class="tags">
+          <span class="tag hot">Python</span><span class="tag hot">SQL</span>
+          <span class="tag">Java</span><span class="tag">R</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Matlab</span>
+        </div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h5>Outils &amp; Frameworks</h5></div>
+        <div class="skill-card-body"><div class="tags">
+          <span class="tag hot">Git</span><span class="tag hot">Databricks</span><span class="tag hot">PySpark</span><span class="tag hot">MLflow</span>
+          <span class="tag">SparkSQL</span><span class="tag">SQLite</span><span class="tag">Streamlit</span><span class="tag">MongoDB</span>
+          <span class="tag">Cassandra</span><span class="tag">Neo4J</span><span class="tag">LangChain</span><span class="tag">Power BI</span>
+        </div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h5>Librairies Python</h5></div>
+        <div class="skill-card-body"><div class="tags">
+          <span class="tag hot">TensorFlow</span><span class="tag hot">PyTorch</span><span class="tag hot">Keras</span>
+          <span class="tag hot">Scikit-Learn</span><span class="tag hot">OpenCV</span>
+          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">XGBoost</span>
+          <span class="tag">LightGBM</span><span class="tag">SHAP</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+        </div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h5>Data Science / Mathématiques</h5></div>
+        <div class="skill-card-body"><div class="tags">
+          <span class="tag hot">Machine Learning</span><span class="tag hot">Deep Learning</span>
+          <span class="tag hot">NLP</span><span class="tag hot">LLM</span>
+          <span class="tag">Transformers</span><span class="tag">Reinforcement Learning</span>
+          <span class="tag">Statistiques</span><span class="tag">Computer Vision</span>
+        </div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h5>Transversales</h5></div>
+        <div class="skill-card-body"><div class="tags">
+          <span class="tag hot">Data storytelling</span><span class="tag hot">Vulgarisation des résultats</span>
+          <span class="tag">Prise de décision basée sur la donnée</span><span class="tag">Capacité d'adaptation</span>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="s-resume">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Parcours</h5>
+      <h1>Expériences et formation.</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve">
+
+      <!-- EXP PRO -->
+      <div class="resume-block">
+        <div class="resume-header"><h2>Expériences professionnelles</h2></div>
+        <div class="tl">
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-briefcase"></i></div>
+            <div class="tl-role">Data Scientist Intern</div>
+            <div class="tl-date">Fév. 2026 - Juil. 2026</div>
+            <div class="tl-org">Michelin - via Akkodis</div>
+            <div class="tl-body">
+              <ul>
+                <li>Création d'un modèle de prédiction de probabilité de dépassement de durée d'incidents (XGBoost, LightGBM, TabNet, LSTM, RoBERTa), Brier Score : 0.06</li>
+                <li>Détection d'anomalies sur 1,6 million d'incidents susceptibles de fausser les KPIs d'environ 5% (SHAP, Isolation Forest, RCA)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-briefcase"></i></div>
+            <div class="tl-role">Data Scientist Intern</div>
+            <div class="tl-date">Mar. 2025 - Juil. 2025</div>
+            <div class="tl-org">Politecnico di Milano - Italie</div>
+            <div class="tl-body">
+              <ul>
+                <li>Classification à 7 catégories (CNN, Random Forest, XGBoost) sur données cliniques pour détecter les asynchronies patient-ventilateur et alerter les médecins, F1-score : 90%</li>
+                <li>Création d'une plateforme Streamlit interactive pour visualiser les résultats en vue d'une publication scientifique</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PROJETS ACADEMIQUES -->
+      <div class="resume-block">
+        <div class="resume-header"><h2>Projets académiques</h2></div>
+        <div class="tl">
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-code"></i></div>
+            <div class="tl-role">Projet Majeur</div>
+            <div class="tl-date">Oct. 2025 - Janv. 2026</div>
+            <div class="tl-org">Évaluation de l'usure des pneus avec l'IA - Michelin</div>
+            <div class="tl-body">
+              <ul>
+                <li>Classification à 8 classes déséquilibrées sur images de pneus (SSD, YOLO), mAP@0.5:0.95 : 0.76</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMATION -->
+      <div class="resume-block">
+        <div class="resume-header"><h2>Formation</h2></div>
+        <div class="tl">
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-graduation-cap"></i></div>
+            <div class="tl-role">Diplôme d'ingénieur - IMDS</div>
+            <div class="tl-date">2023 - 2026</div>
+            <div class="tl-org">Polytech Clermont - Ingénierie Mathématiques et Data Sciences</div>
+            <div class="tl-body">
+              <p>Enseignements principaux : Machine Learning et Deep Learning, mathématiques appliquées à l'IA, statistiques inférentielles et bayésiennes, méthodes de Monte Carlo, optimisation, bases de données avancées (SQL et NoSQL), entrepôt de données, Git, Power BI, Databricks.</p>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-graduation-cap"></i></div>
+            <div class="tl-role">Classe préparatoire intégrée - Mathématiques</div>
+            <div class="tl-date">2021 - 2023</div>
+            <div class="tl-org">Polytech Clermont</div>
+            <div class="tl-body">
+              <p>Formation pluridisciplinaire alliant mathématiques approfondies, informatique et sciences physiques. En informatique : SQL, bases de données, systèmes d'information, programmation. En mathématiques : algèbre linéaire et euclidienne, analyse, arithmétique, méthodes discrètes, équations aux dérivées partielles, mesure et intégration.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- INITIATIVES -->
+      <div class="resume-block">
+        <div class="resume-header"><h2>Initiatives</h2></div>
+        <div class="tl">
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-lightbulb-o"></i></div>
+            <div class="tl-role">Hackathon "Végétal &amp; IA"</div>
+            <div class="tl-date">2025</div>
+            <div class="tl-org">Clermont Auvergne PEPITE x Végépolys Valley</div>
+            <div class="tl-body">
+              <p>Design d'un robot assisté par IA détectant les vignes suspectes de maladie, équipé d'un bras mécanique pour prélèvements PCR. Présentation orale devant jury professionnel.</p>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-dot"><i class="fa fa-trophy"></i></div>
+            <div class="tl-role">Bourse académique et sportive</div>
+            <div class="tl-date">2024</div>
+            <div class="tl-org">Midland University - États-Unis</div>
+            <div class="tl-body">
+              <p>Obtention d'une bourse sur critères académiques et sportifs (athlétisme).</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="s-stats" style="background:#313131;padding:7rem 0">
+  <div class="row">
+    <div class="col-twelve">
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa fa-folder-open"></i></div>
+          <span class="stat-num" data-target="2">2</span>
+          <span class="stat-lbl">Stages Data Science</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa fa-file-text"></i></div>
+          <span class="stat-num" data-target="1">1</span>
+          <span class="stat-lbl">Publication scientifique</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa fa-globe"></i></div>
+          <span class="stat-num" data-target="1">1</span>
+          <span class="stat-lbl">Expérience à l'international</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa fa-lightbulb-o"></i></div>
+          <span class="stat-num" data-target="1">1</span>
+          <span class="stat-lbl">Hackathon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="s-portfolio">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Projets</h5>
+      <h1>Mes réalisations.</h1>
+      <p class="lead">Projets menés en stage et en formation, dans des contextes industriels, médicaux et de recherche.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve">
+      <div class="folio-grid">
+
+        <div class="folio-item">
+          <div class="folio-bg" style="background:linear-gradient(135deg,#1a1a2e 0%,#0f3460 100%)">
+            <i class="fa fa-search folio-icon"></i>
+          </div>
+          <div class="folio-label">
+            <p class="folio-label-title">Computer Vision / Industrie</p>
+            <p class="folio-label-sub">Détection d'usure de pneus Michelin</p>
+          </div>
+          <a href="#modal-p1" class="folio-overlay folio-link">
+            <div><h3>Computer Vision / Industrie</h3><p>Détection d'usure de pneus Michelin</p></div>
+          </a>
+        </div>
+
+        <div class="folio-item">
+          <div class="folio-bg" style="background:linear-gradient(135deg,#0d3b2e 0%,#0f3460 100%)">
+            <i class="fa fa-heartbeat folio-icon"></i>
+          </div>
+          <div class="folio-label">
+            <p class="folio-label-title">Analyse de données / Santé</p>
+            <p class="folio-label-sub">Asynchronies patient-ventilateur</p>
+          </div>
+          <a href="#modal-p2" class="folio-overlay folio-link">
+            <div><h3>Analyse de données / Santé</h3><p>Asynchronies patient-ventilateur</p></div>
+          </a>
+        </div>
+
+        <div class="folio-item">
+          <div class="folio-bg" style="background:linear-gradient(135deg,#2d1b4e 0%,#533483 100%)">
+            <i class="fa fa-eye folio-icon"></i>
+          </div>
+          <div class="folio-label">
+            <p class="folio-label-title">Deep Learning / Vision</p>
+            <p class="folio-label-sub">Estimation de distance via LoRA</p>
+          </div>
+          <a href="#modal-p3" class="folio-overlay folio-link">
+            <div><h3>Deep Learning / Vision</h3><p>Estimation de distance via LoRA</p></div>
+          </a>
+        </div>
+
+        <div class="folio-item">
+          <div class="folio-bg" style="background:linear-gradient(135deg,#1a2e1a 0%,#2d6a4f 100%)">
+            <i class="fa fa-font folio-icon"></i>
+          </div>
+          <div class="folio-label">
+            <p class="folio-label-title">NLP / Vision</p>
+            <p class="folio-label-sub">OCR sur texte bruité par photo</p>
+          </div>
+          <a href="#modal-p4" class="folio-overlay folio-link">
+            <div><h3>NLP / Vision</h3><p>OCR sur texte bruité par photo</p></div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- MODALS -->
+      <div id="modal-p1" class="popup-modal mfp-hide">
+        <h5>Détection d'usure des pneus avec l'IA - Michelin</h5>
+        <ul>
+          <li><strong>Contexte :</strong> Projet Majeur - Polytech Clermont (Oct. 2025 - Janv. 2026)</li>
+          <li><strong>Objectif :</strong> Détecter et quantifier l'usure sur images de pneus Michelin</li>
+          <li><strong>Missions :</strong>
+            <ul style="margin-top:.5rem">
+              <li>Classification à 8 classes déséquilibrées</li>
+              <li>Gestion du déséquilibre sur données industrielles réelles</li>
+              <li>Optimisation des modèles de détection d'objets</li>
+            </ul>
+          </li>
+          <li><strong>Résultat :</strong> mAP@0.5:0.95 = 0.76</li>
+          <li><strong>Outils :</strong> Python, PyTorch, YOLO, SSD, OpenCV</li>
+        </ul>
+        <div class="link-box"><a href="#" class="btn-close">Fermer</a></div>
+      </div>
+
+      <div id="modal-p2" class="popup-modal mfp-hide">
+        <h5>Détection d'asynchronies patient-ventilateur - Politecnico di Milano</h5>
+        <ul>
+          <li><strong>Contexte :</strong> Data Scientist Intern - Italie (Mar. - Juil. 2025)</li>
+          <li><strong>Objectif :</strong> Alerter les médecins face aux asynchronies respiratoires</li>
+          <li><strong>Missions :</strong>
+            <ul style="margin-top:.5rem">
+              <li>Classification à 7 catégories sur données cliniques</li>
+              <li>Comparaison CNN, Random Forest, XGBoost</li>
+              <li>Plateforme Streamlit interactive pour vulgariser les résultats</li>
+              <li>Contribution à une publication scientifique IEEE</li>
+            </ul>
+          </li>
+          <li><strong>Résultat :</strong> F1-score de 90%</li>
+          <li><strong>Outils :</strong> Python, TensorFlow, Scikit-Learn, XGBoost, Streamlit</li>
+        </ul>
+        <div class="link-box"><a href="#" class="btn-close">Fermer</a></div>
+      </div>
+
+      <div id="modal-p3" class="popup-modal mfp-hide">
+        <h5>Estimation de distance sur image via fine-tuning LoRA</h5>
+        <ul>
+          <li><strong>Contexte :</strong> Projet académique</li>
+          <li><strong>Objectif :</strong> Estimer des distances sur des images à l'aide d'un modèle fine-tuné par méthode LoRA</li>
+          <li><strong>Missions :</strong>
+            <ul style="margin-top:.5rem">
+              <li>Fine-tuning d'un modèle pré-entraîné avec la méthode LoRA (Low-Rank Adaptation)</li>
+              <li>Entraînement sur un dataset d'images annotées</li>
+              <li>Évaluation des performances de régression</li>
+            </ul>
+          </li>
+          <li><strong>Outils :</strong> Python, PyTorch, LoRA, HuggingFace</li>
+        </ul>
+        <div class="link-box"><a href="#" class="btn-close">Fermer</a></div>
+      </div>
+
+      <div id="modal-p4" class="popup-modal mfp-hide">
+        <h5>OCR sur texte bruité capturé par photo</h5>
+        <ul>
+          <li><strong>Contexte :</strong> Projet académique</li>
+          <li><strong>Objectif :</strong> Extraire du texte lisible à partir de photos bruitées</li>
+          <li><strong>Missions :</strong>
+            <ul style="margin-top:.5rem">
+              <li>Preprocessing des images : débruitage, binarisation, correction de perspective</li>
+              <li>Application de techniques OCR sur les images nettoyées</li>
+              <li>Évaluation de la qualité d'extraction sur différents niveaux de bruit</li>
+            </ul>
+          </li>
+          <li><strong>Outils :</strong> Python, OpenCV, Tesseract, Deep Learning</li>
+        </ul>
+        <div class="link-box"><a href="#" class="btn-close">Fermer</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="s-publication">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Publication scientifique</h5>
+      <h1 style="color:#fff">IEEE MetroXRAINE 2025</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve" style="text-align:center">
+      <div class="pub-card">
+        <div class="pub-venue">IEEE MetroXRAINE - Octobre 2025</div>
+        <div class="pub-title">Comparing Respiratory Rate and Minute Ventilation Measures between Commercial-Grade Wearable Devices and a Metabolic Cart.</div>
+        <div class="pub-authors">Massone, P., Bernasconi, S., <strong>Bernardin, L.</strong> et al. (2025)</div>
+        <a href="https://doi.org/10.1109/MetroXRAINE66377.2025.11340041" class="pub-doi" target="_blank">DOI : 10.1109/MetroXRAINE66377.2025.11340041</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASSION -->
+<section id="s-passion">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Passion</h5>
+      <h1>L'athlétisme, bien plus qu'un sport.</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-twelve">
+      <div class="passion-grid">
+
+        <div class="passion-text">
+          <p>Je pratique l'athlétisme depuis <span class="hl">9 ans</span> au <span class="hl">Clermont Athlétisme Auvergne</span>, sur 800m. C'est avant tout ma passion, ce qui me motive et me pousse à donner le meilleur de moi-même au quotidien.</p>
+          <p>J'ai participé aux <span class="hl">Championnats de France FFA à 5 reprises</span>, dont une finale avec une 8e place en 2022. J'ai également représenté mon université aux <span class="hl">Championnats de France Universitaires à 3 reprises</span>.</p>
+          <p>L'athlétisme m'a appris la <span class="hl">rigueur</span>, la <span class="hl">discipline</span> et surtout la <span class="hl">résilience</span>. Ne jamais abandonner, repousser ses limites, se relever après chaque échec. Ces valeurs, je les applique chaque jour dans mon travail.</p>
+          <div class="passion-kpis">
+            <div class="passion-kpi"><span class="passion-kpi-num">5x</span><span class="passion-kpi-lbl">Championnats de France FFA</span></div>
+            <div class="passion-kpi"><span class="passion-kpi-num">3x</span><span class="passion-kpi-lbl">Championnats de France Universitaires</span></div>
+            <div class="passion-kpi"><span class="passion-kpi-num">8e</span><span class="passion-kpi-lbl">Finaliste 2022</span></div>
+            <div class="passion-kpi"><span class="passion-kpi-num">9</span><span class="passion-kpi-lbl">Années de pratique</span></div>
+          </div>
+          <a href="https://www.youtube.com/shorts/RUTOz2fpflw" target="_blank" class="btn-yt">
+            <i class="fa fa-play-circle"></i> Voir la vidéo YouTube
+          </a>
+        </div>
+
+        <div class="passion-photos">
+          <!-- Images locales — fonctionne quand le HTML est ouvert depuis le même dossier que les images -->
+          <img src="image_athle_1.jpeg" alt="Athlétisme - Léo Bernardin" class="landscape"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;height:300px;background:#f0f0f0;border-radius:6px;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.3rem;color:#aaa;border:2px dashed #ccc;text-align:center;padding:2rem">
+            Mets <strong>image_athle_1.jpeg</strong> dans le même dossier que ce fichier HTML
+          </div>
+          <img src="image_athle_2.jpeg" alt="Athlétisme - Léo Bernardin" class="portrait"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;height:300px;background:#f0f0f0;border-radius:6px;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.3rem;color:#aaa;border:2px dashed #ccc;text-align:center;padding:2rem">
+            Mets <strong>image_athle_2.jpeg</strong> dans le même dossier que ce fichier HTML
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="s-contact">
+  <div class="row section-intro">
+    <div class="col-twelve">
+      <h5>Contact</h5>
+      <h1>N'hésitez pas à me contacter.</h1>
+      <p class="lead">N'hésitez pas à me contacter.</p>
+    </div>
+  </div>
+  <div class="row cf" style="margin-top:4.8rem">
+    <div class="col-four contact-block">
+      <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
+      <h5>Localisation</h5>
+      <p>Clermont-Ferrand<br>Mobile dans toute la France</p>
+    </div>
+    <div class="col-four contact-block">
+      <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+      <h5>Email</h5>
+      <p><a href="mailto:leo.bernardin5@gmail.com">leo.bernardin5@gmail.com</a></p>
+    </div>
+    <div class="col-four contact-block">
+      <div class="contact-icon"><i class="fa fa-phone"></i></div>
+      <h5>Téléphone</h5>
+      <p>+33 6 41 02 28 67</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="row">
+    <div class="footer-inner">
+      <div class="footer-copy">&copy; 2026 Léo Bernardin</div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/" target="_blank"><i class="fa fa-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="back-top"><a href="#s-intro" id="top-btn"><i class="fa fa-chevron-up"></i></a></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+$(function(){
+
+  /* ---- Preloader ---- */
+  $(window).on('load', function(){
+    $('#loader').fadeOut(400, function(){
+      $('#preloader').delay(200).fadeOut(400);
+    });
+  });
+  setTimeout(function(){ $('#preloader').hide(); }, 3000);
+
+  /* ---- Smooth scroll helper ---- */
+  var HEADER_H = 66;
+  function goTo(targetId){
+    var $t = $(targetId);
+    if(!$t.length) return;
+    var dest = $t.offset().top - HEADER_H;
+    $('html,body').stop(true).animate({ scrollTop: dest }, 750, 'swing');
+  }
+
+  /* ---- Nav menu toggle ---- */
+  $('#menu-btn').on('click', function(e){
+    e.preventDefault();
+    $(this).toggleClass('open');
+    $('#nav-wrap').slideToggle(250);
+  });
+
+  /* ---- Nav links click ---- */
+  $('.main-nav a').on('click', function(e){
+    var href = $(this).attr('href');
+    if(href && href.charAt(0) === '#' && href.length > 1){
+      e.preventDefault();
+      goTo(href);
+      $('#menu-btn').removeClass('open');
+      $('#nav-wrap').slideUp(200);
+    }
+  });
+
+  /* ---- Hero "En savoir plus" button ---- */
+  $('#btn-about').on('click', function(e){
+    e.preventDefault();
+    goTo('#s-about');
+  });
+
+  /* ---- Active nav highlight ---- */
+  var navTargets = [];
+  $('.main-nav a').each(function(){
+    var h = $(this).attr('href');
+    if(h && h.charAt(0) === '#' && $(h).length){
+      navTargets.push({ id: h, $li: $(this).parent() });
+    }
+  });
+  $(window).on('scroll.nav', function(){
+    var scrollY = $(this).scrollTop() + HEADER_H + 10;
+    for(var i = navTargets.length - 1; i >= 0; i--){
+      if(scrollY >= $(navTargets[i].id).offset().top){
+        $('.main-nav li').removeClass('active');
+        navTargets[i].$li.addClass('active');
+        break;
+      }
+    }
+  });
+
+  /* ---- Back to top button visibility ---- */
+  $(window).on('scroll.top', function(){
+    if($(this).scrollTop() > 400){
+      $('#top-btn').addClass('visible');
+    } else {
+      $('#top-btn').removeClass('visible');
+    }
+  });
+  $('#top-btn').on('click', function(e){
+    e.preventDefault();
+    goTo('#s-intro');
+  });
+
+  /* ---- Magnific Popup for projects ---- */
+  $('.folio-link').magnificPopup({
+    type: 'inline',
+    fixedContentPos: false,
+    removalDelay: 200,
+    showCloseBtn: true,
+    mainClass: 'mfp-fade'
+  });
+  $(document).on('click', '.btn-close', function(e){
+    e.preventDefault();
+    $.magnificPopup.close();
+  });
+
+  /* ---- Stat counter ---- */
+  var statsDone = false;
+  $(window).on('scroll.stats', function(){
+    if(statsDone) return;
+    var $stats = $('#s-stats');
+    if(!$stats.length) return;
+    if($(this).scrollTop() + $(this).height() > $stats.offset().top + 80){
+      statsDone = true;
+      $('.stat-num').each(function(){
+        var $el = $(this), end = parseInt($el.attr('data-target'));
+        $el.text('0');
+        $({n:0}).animate({n:end},{
+          duration:1800, easing:'swing',
+          step:function(){ $el.text(Math.ceil(this.n)); },
+          complete:function(){ $el.text(end); }
+        });
+      });
+    }
+  });
+
+});
+</script>
+</body>
+</html>
